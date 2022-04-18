@@ -1,13 +1,13 @@
 ###
 
 POST http://localhost:4000/v1/admin/edit
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjZXZhLmNvbSIsInN1YiI6IjMiLCJhdWQiOlsiY2V2YS5jb20iXSwiZXhwIjoxNjUwMTY0NjE1LjI5NjIzMDgsIm5iZiI6MTY1MDA3ODIxNS4yOTYyMzA4LCJpYXQiOjE2NTAwNzgyMTUuMjk2MjN9.R0fjhhE6-jQ556rGJSCK4A6b-a1vHKBvbjgp3oiddbw
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjZXZhLmNvbSIsInN1YiI6IjMiLCJhdWQiOlsiY2V2YS5jb20iXSwiZXhwIjoxNjUwMzgyMTQ5LjYzMDIzMjYsIm5iZiI6MTY1MDI5NTc0OS42MzAyMzIzLCJpYXQiOjE2NTAyOTU3NDkuNjMwMjMxOX0.L8VHbMLTS-vrUpjH2ZP8MjsbuD0qPGcHcwJQ6VnnSf0
 
 {
-    "id": "112",
-	"title": "ca5551cat4564",
-	"description": "hahaaa"
-
+  "id": "105",
+  "title": "added smth new",
+  "winner": "A2",
+  "description": "ha ha haaa"
 }
 
 ###

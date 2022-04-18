@@ -7,11 +7,11 @@ POST http://localhost:4000/v1/signin
 Content-Type: application/json
 
 {
-    "email": "ra.du@yahoo.com",
-    "password": "parola123"
+    "email": "mishutrz2@yahoo.com",
+    "password": "arlemanosel"
 }
 
 ###
 
-GET http://localhost:4000/v1/myall
+GET http://localhost:4000/v1/my
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjZXZhLmNvbSIsInN1YiI6IjQiLCJhdWQiOlsiY2V2YS5jb20iXSwiZXhwIjoxNjUwMzA0MTkxLjYyMzEzNjgsIm5iZiI6MTY1MDIxNzc5MS42MjMxMzY4LCJpYXQiOjE2NTAyMTc3OTEuNjIzMTM2M30.c4pno13hOxOvdOuhfwnNXkUyCsyNuYp70wyXGIXVMGE

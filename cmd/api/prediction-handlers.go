@@ -42,6 +42,7 @@ type PredictionPayload struct {
 	UpdatedAt   string `json:"updated_at"`
 	Author      string `json:"author"`
 	Votes       string `json:"votes"`
+	Winner      string `json:"winner"`
 }
 
 // // CREATE
@@ -127,6 +128,7 @@ func (app *application) editPrediction(w http.ResponseWriter, r *http.Request) {
 	prediction.UpdatedAt = time.Now()
 	// prediction.Author, _ = strconv.Atoi(payload.Author)
 	prediction.Author = idUser
+	prediction.Winner = payload.Winner
 
 	if prediction.ID == 0 {
 		err = app.models.DB.InsertPrediction(prediction)

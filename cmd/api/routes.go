@@ -28,6 +28,9 @@ func (app *application) routes() http.Handler {
 	router.HandlerFunc(http.MethodGet, "/status", app.statusHandler)
 	router.HandlerFunc(http.MethodGet, "/info", app.infoHandler)
 
+	// register a new account
+	router.HandlerFunc(http.MethodPost, "/v1/signup", app.registerAccount)
+
 	// handler jwt
 	router.HandlerFunc(http.MethodPost, "/v1/signin", app.Signin)
 

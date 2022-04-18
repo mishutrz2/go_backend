@@ -37,6 +37,7 @@ type DisplayPrediction struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 	Author      string    `json:"author"`
 	Votes       int       `json:"votes"`
+	Winner      string    `json:"winner"`
 }
 
 type User struct {

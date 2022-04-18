@@ -41,7 +41,7 @@ func (m *DBModel) GetSec(id int) (*Prediction, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var prediction Prediction
-	query := `select id, title, description, author , votes from users, predis where users.id_user=predis.author and id=$1`
+	query := `select id, title, description, author , votes, winner from users, predis where users.id_user=predis.author and id=$1`
 
 	row := m.DB.QueryRowContext(ctx, query, id)
 
@@ -51,6 +51,7 @@ func (m *DBModel) GetSec(id int) (*Prediction, error) {
 		&prediction.Description,
 		&prediction.Author,
 		&prediction.Votes,
+		&prediction.Winner,
 	)
 
 	if err != nil {
@@ -64,7 +65,7 @@ func (m *DBModel) Get(id int) (*DisplayPrediction, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 	var prediction DisplayPrediction
-	query := `select id, title, description, users.nickname , votes, created_at, updated_at from users, predis where users.id_user=predis.author and id=$1`
+	query := `select id, title, description, users.nickname , votes, created_at, updated_at, winner from users, predis where users.id_user=predis.author and id=$1`
 
 	row := m.DB.QueryRowContext(ctx, query, id)
 
@@ -76,6 +77,7 @@ func (m *DBModel) Get(id int) (*DisplayPrediction, error) {
 		&prediction.Votes,
 		&prediction.CreatedAt,
 		&prediction.UpdatedAt,
+		&prediction.Winner,
 	)
 
 	if err != nil {
@@ -89,7 +91,7 @@ func (m *DBModel) All() ([]*Prediction, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	query := `select id, title, description, author, votes, created_at, updated_at from predis, users where predis.author=users.id_user;`
+	query := `select id, title, description, author, votes, created_at, updated_at, winner from predis, users where predis.author=users.id_user;`
 
 	rows, err := m.DB.QueryContext(ctx, query)
 	if err != nil {
@@ -109,6 +111,7 @@ func (m *DBModel) All() ([]*Prediction, error) {
 			&prediction.Votes,
 			&prediction.CreatedAt,
 			&prediction.UpdatedAt,
+			&prediction.Winner,
 		)
 		if err != nil {
 			return nil, err
@@ -149,7 +152,7 @@ func (m *DBModel) MyAll(id_user int) ([]*Prediction, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	query := `select id, title, description, author, votes, created_at, updated_at from predis, users where predis.author=users.id_user and users.id_user=$1`
+	query := `select id, title, description, author, votes, created_at, updated_at, winner from predis, users where predis.author=users.id_user and users.id_user=$1`
 
 	rows, err := m.DB.QueryContext(ctx, query, id_user)
 	if err != nil {
@@ -169,6 +172,7 @@ func (m *DBModel) MyAll(id_user int) ([]*Prediction, error) {
 			&prediction.Votes,
 			&prediction.CreatedAt,
 			&prediction.UpdatedAt,
+			&prediction.Winner,
 		)
 		if err != nil {
 			return nil, err
@@ -183,9 +187,9 @@ func (m *DBModel) InsertPrediction(prediction Prediction) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	stmt := `insert into predis (title, description, created_at, updated_at, author, votes) values ($1, $2, $3, $4, $5, $6)`
+	stmt := `insert into predis (title, description, created_at, updated_at, author, votes, winner) values ($1, $2, $3, $4, $5, $6, $7)`
 
-	_, err := m.DB.ExecContext(ctx, stmt, prediction.Title, prediction.Description, prediction.CreatedAt, prediction.UpdatedAt, prediction.Author, prediction.Votes)
+	_, err := m.DB.ExecContext(ctx, stmt, prediction.Title, prediction.Description, prediction.CreatedAt, prediction.UpdatedAt, prediction.Author, prediction.Votes, prediction.Winner)
 
 	if err != nil {
 		return err
@@ -197,9 +201,9 @@ func (m *DBModel) EditPrediction(prediction Prediction) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	stmt := `update predis set title=$1, description=$2,  updated_at=$3 where id=$4`
+	stmt := `update predis set title=$1, description=$2,  updated_at=$3, winner=$4 where id=$5`
 
-	_, err := m.DB.ExecContext(ctx, stmt, prediction.Title, prediction.Description, prediction.UpdatedAt, prediction.ID)
+	_, err := m.DB.ExecContext(ctx, stmt, prediction.Title, prediction.Description, prediction.UpdatedAt, prediction.Winner, prediction.ID)
 
 	if err != nil {
 		return err
