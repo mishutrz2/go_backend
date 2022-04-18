@@ -3,37 +3,11 @@ package models
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"time"
 )
 
 type DBModel struct {
 	DB *sql.DB
-}
-
-// get user info
-func (m *DBModel) GetUserInfo(emailAdress string) (*User, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	defer cancel()
-
-	var user User
-	query := `select id_user, nickname, full_name, country, email, password from users where users.email=$1`
-	row := m.DB.QueryRowContext(ctx, query, emailAdress)
-
-	err := row.Scan(
-		&user.ID_user,
-		&user.Nickname,
-		&user.FullName,
-		&user.Country,
-		&user.Email,
-		&user.Password,
-	)
-
-	if err != nil {
-		fmt.Println(err)
-		return nil, err
-	}
-	return &user, nil
 }
 
 // return one Prediction, and error, if any

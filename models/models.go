@@ -48,3 +48,10 @@ type User struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
+
+type UserNoPass struct {
+	Nickname string `json:"nickname"`
+	FullName string `json:"full_name"`
+	Country  string `json:"country"`
+	Email    string `json:"email"`
+}

@@ -34,6 +34,9 @@ func (app *application) routes() http.Handler {
 	// handler jwt
 	router.HandlerFunc(http.MethodPost, "/v1/signin", app.Signin)
 
+	// get some info about user
+	router.GET("/v1/user-info", app.wrap(secure.ThenFunc(app.getUserPublicInfo)))
+
 	// get Prediction/s handlers
 	router.HandlerFunc(http.MethodGet, "/v1/all/:id", app.getOnePrediction)
 	router.HandlerFunc(http.MethodGet, "/v1/all", app.getAllPredictions)
