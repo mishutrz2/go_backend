@@ -1,0 +1,16 @@
+###
+
+POST http://localhost:4000/v1/admin/edit
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjZXZhLmNvbSIsInN1YiI6IjMiLCJhdWQiOlsiY2V2YS5jb20iXSwiZXhwIjoxNjUwMTY0NjE1LjI5NjIzMDgsIm5iZiI6MTY1MDA3ODIxNS4yOTYyMzA4LCJpYXQiOjE2NTAwNzgyMTUuMjk2MjN9.R0fjhhE6-jQ556rGJSCK4A6b-a1vHKBvbjgp3oiddbw
+
+{
+    "id": "112",
+	"title": "ca5551cat4564",
+	"description": "hahaaa"
+
+}
+
+###
+
+GET http://localhost:4000/v1/admin/delete/122
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjZXZhLmNvbSIsInN1YiI6IjUiLCJhdWQiOlsiY2V2YS5jb20iXSwiZXhwIjoxNjUwMjA3MDYyLjUwNzgyNiwibmJmIjoxNjUwMTIwNjYyLjUwNzgyNiwiaWF0IjoxNjUwMTIwNjYyLjUwNzgyNTZ9.1mSOoPXVxjGQ6va_FJdxsglIZ83XfIpPYy_UCV3xVg8
