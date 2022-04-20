@@ -6,6 +6,7 @@ import (
 	"errors"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 // type UserPayload struct {
@@ -28,7 +29,11 @@ func (app *application) registerAccount(w http.ResponseWriter, r *http.Request) 
 	// call database method
 	err = app.models.DB.CreateAccount(payload)
 	if err != nil {
-		app.errJSON(w, err)
+		if strings.Contains(err.Error(), "duplicate key value violates unique constraint \"users_un\"") {
+			app.errJSON(w, errors.New("email address is already registered"))
+		} else {
+			app.errJSON(w, err)
+		}
 		return
 	}
 
@@ -39,7 +44,9 @@ func (app *application) registerAccount(w http.ResponseWriter, r *http.Request) 
 	err = app.writeJSON(w, http.StatusOK, ok, "response")
 
 	if err != nil {
+
 		app.errJSON(w, err)
+
 		return
 	}
 }
