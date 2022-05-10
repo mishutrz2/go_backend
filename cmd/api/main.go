@@ -53,8 +53,8 @@ func main() {
 
 	flag.IntVar(&cfg.port, "port", 4000, "Server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "Application environment (development|production)")
-	flag.StringVar(&cfg.db.dsn, "dsn", "postgres://preds_user:parola@localhost/go_predictions?sslmode=disable", "Connection string for database")
-	flag.StringVar(&cfg.jwt.secret, "jwt-secret", "a0397238efddcbfba45f5faa2215384545ef3ad3af5a86ba76cab5bf2367483f", "Secret used")
+	flag.StringVar(&cfg.db.dsn, "dsn", "", "Connection string for database")
+	flag.StringVar(&cfg.jwt.secret, "jwt-secret", "", "Secret used")
 	flag.Parse()
 
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
